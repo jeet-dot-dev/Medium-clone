@@ -5,14 +5,15 @@ import { sign } from "hono/jwt";
 
 // for sign up
 const signupHandler = async (c: Context) => {
-  const prisma = getPrisma(c);
-  const { email, password } = await c.req.json();
-
-  //hashing the password
-  const { hash, salt } = await hashPassword(password);
-
-  // storing it to db
   try {
+    const prisma = getPrisma(c);
+    const { email, password } = await c.req.json();
+
+    //hashing the password
+    const { hash, salt } = await hashPassword(password);
+
+    // storing it to db
+
     const user = await prisma.user.create({
       data: {
         email,

@@ -4,10 +4,17 @@ import {
   getBlogbyIdHandler,
   updateBlogHandler,
 } from "../controllers/blog.controller";
-const blogRoutes = new Hono();
+import authmiddleware from "../middlewares/auth.middleware";
 
-blogRoutes.post("/blog", createBlogHandler);
-blogRoutes.put("/blog", updateBlogHandler);
+const blogRoutes = new Hono<{
+  Bindings: {
+    DATABASE_URL: string;
+    JWT_SECRET: string;
+  };
+}>();
+
+blogRoutes.post("/blog", authmiddleware, createBlogHandler);
+blogRoutes.put("/blog", authmiddleware, updateBlogHandler);
 blogRoutes.get("/blog/:id", getBlogbyIdHandler);
 
 export default blogRoutes;
