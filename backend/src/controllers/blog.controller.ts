@@ -1,13 +1,17 @@
 import { Context } from "hono";
 import { getPrisma } from "../models/prisma";
+import { craeteblogtype, updateblogtype } from "@jeet-dot-dev/medium-common";
 
 //Create the route to initialize a blog/post
 const createBlogHandler = async (c: Context) => {
   try {
     const { title, content } = await c.req.json();
     //console.log("title :", title, "cntent :", content);
-    if (!title || !content) {
-      return c.json({ error: "Missing components " }, 400);
+    //type check
+    const { success } = craeteblogtype.safeParse({ title, content });
+    if (!success) {
+      c.status(400);
+      return c.json({ error: "invalid input" });
     }
     const jwtPayload = c.get("jwtPayload");
     if (!jwtPayload) {
@@ -37,6 +41,12 @@ const updateBlogHandler = async (c: Context) => {
   try {
     // getting the postId from body
     const { postId, title, content } = await c.req.json();
+    // zod type check
+    const { success } = updateblogtype.safeParse({ postId, title, content });
+    if (!success) {
+      c.status(400);
+      return c.json({ error: "invalid input" });
+    }
     // getting the userId from middleware
     const token = c.get("jwtPayload");
     const userId = token.userId;

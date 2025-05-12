@@ -2,13 +2,18 @@ import { Context } from "hono";
 import { getPrisma } from "../models/prisma";
 import { hashPassword, verifyPassword } from "../utils/crypto";
 import { sign } from "hono/jwt";
-
+import { signintype, signuptype } from "@jeet-dot-dev/medium-common";
 // for sign up
 const signupHandler = async (c: Context) => {
   try {
     const prisma = getPrisma(c);
-    const { email, password } = await c.req.json();
-
+    const { email, password, name } = await c.req.json();
+    //zod type checking
+    const { success } = signuptype.safeParse({ email, password, name });
+    if (!success) {
+      c.status(400);
+      return c.json({ error: "invalid input" });
+    }
     //hashing the password
     const { hash, salt } = await hashPassword(password);
 
@@ -18,6 +23,7 @@ const signupHandler = async (c: Context) => {
       data: {
         email,
         passwordHash: hash,
+        name,
         salt,
       },
     });
@@ -36,6 +42,12 @@ const signinHandler = async (c: Context) => {
   try {
     const prisma = getPrisma(c);
     const { email, password } = await c.req.json();
+    //zod type check
+    const { success } = signintype.safeParse({ email, password });
+    if (!success) {
+      c.status(400);
+      return c.json({ error: "invalid input" });
+    }
     // check email exists or not
     const user = await prisma.user.findUnique({
       where: {
