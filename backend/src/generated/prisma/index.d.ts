@@ -2076,6 +2076,7 @@ export namespace Prisma {
     content: string | null
     published: boolean | null
     authorId: string | null
+    publish_date: Date | null
   }
 
   export type PostMaxAggregateOutputType = {
@@ -2084,6 +2085,7 @@ export namespace Prisma {
     content: string | null
     published: boolean | null
     authorId: string | null
+    publish_date: Date | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -2092,6 +2094,7 @@ export namespace Prisma {
     content: number
     published: number
     authorId: number
+    publish_date: number
     _all: number
   }
 
@@ -2102,6 +2105,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    publish_date?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -2110,6 +2114,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    publish_date?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -2118,6 +2123,7 @@ export namespace Prisma {
     content?: true
     published?: true
     authorId?: true
+    publish_date?: true
     _all?: true
   }
 
@@ -2199,6 +2205,7 @@ export namespace Prisma {
     content: string
     published: boolean
     authorId: string
+    publish_date: Date
     _count: PostCountAggregateOutputType | null
     _min: PostMinAggregateOutputType | null
     _max: PostMaxAggregateOutputType | null
@@ -2224,6 +2231,7 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    publish_date?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -2233,6 +2241,7 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    publish_date?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -2242,6 +2251,7 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    publish_date?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -2251,9 +2261,10 @@ export namespace Prisma {
     content?: boolean
     published?: boolean
     authorId?: boolean
+    publish_date?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "published" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "published" | "authorId" | "publish_date", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2275,6 +2286,7 @@ export namespace Prisma {
       content: string
       published: boolean
       authorId: string
+      publish_date: Date
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -2704,6 +2716,7 @@ export namespace Prisma {
     readonly content: FieldRef<"Post", 'String'>
     readonly published: FieldRef<"Post", 'Boolean'>
     readonly authorId: FieldRef<"Post", 'String'>
+    readonly publish_date: FieldRef<"Post", 'DateTime'>
   }
     
 
@@ -3148,7 +3161,8 @@ export namespace Prisma {
     title: 'title',
     content: 'content',
     published: 'published',
-    authorId: 'authorId'
+    authorId: 'authorId',
+    publish_date: 'publish_date'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -3201,6 +3215,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -3285,6 +3313,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    publish_date?: DateTimeFilter<"Post"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3294,6 +3323,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    publish_date?: SortOrder
     author?: UserOrderByWithRelationInput
   }
 
@@ -3306,6 +3336,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    publish_date?: DateTimeFilter<"Post"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -3315,6 +3346,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    publish_date?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
     _min?: PostMinOrderByAggregateInput
@@ -3329,6 +3361,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
     authorId?: StringWithAggregatesFilter<"Post"> | string
+    publish_date?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -3396,6 +3429,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    publish_date?: Date | string
     author: UserCreateNestedOneWithoutPostsInput
   }
 
@@ -3405,6 +3439,7 @@ export namespace Prisma {
     content: string
     published?: boolean
     authorId: string
+    publish_date?: Date | string
   }
 
   export type PostUpdateInput = {
@@ -3412,6 +3447,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
 
@@ -3421,6 +3457,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: StringFieldUpdateOperationsInput | string
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostCreateManyInput = {
@@ -3429,6 +3466,7 @@ export namespace Prisma {
     content: string
     published?: boolean
     authorId: string
+    publish_date?: Date | string
   }
 
   export type PostUpdateManyMutationInput = {
@@ -3436,6 +3474,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -3444,6 +3483,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: StringFieldUpdateOperationsInput | string
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3556,6 +3596,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3567,6 +3618,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    publish_date?: SortOrder
   }
 
   export type PostMaxOrderByAggregateInput = {
@@ -3575,6 +3627,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    publish_date?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -3583,6 +3636,7 @@ export namespace Prisma {
     content?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
+    publish_date?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -3591,6 +3645,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type PostCreateNestedManyWithoutAuthorInput = {
@@ -3651,6 +3719,10 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -3750,6 +3822,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -3758,11 +3841,26 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type PostCreateWithoutAuthorInput = {
     id?: string
     title: string
     content: string
     published?: boolean
+    publish_date?: Date | string
   }
 
   export type PostUncheckedCreateWithoutAuthorInput = {
@@ -3770,6 +3868,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    publish_date?: Date | string
   }
 
   export type PostCreateOrConnectWithoutAuthorInput = {
@@ -3807,6 +3906,7 @@ export namespace Prisma {
     content?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: StringFilter<"Post"> | string
+    publish_date?: DateTimeFilter<"Post"> | Date | string
   }
 
   export type UserCreateWithoutPostsInput = {
@@ -3862,6 +3962,7 @@ export namespace Prisma {
     title: string
     content: string
     published?: boolean
+    publish_date?: Date | string
   }
 
   export type PostUpdateWithoutAuthorInput = {
@@ -3869,6 +3970,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateWithoutAuthorInput = {
@@ -3876,6 +3978,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyWithoutAuthorInput = {
@@ -3883,6 +3986,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
+    publish_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -133,7 +133,8 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   content: 'content',
   published: 'published',
-  authorId: 'authorId'
+  authorId: 'authorId',
+  publish_date: 'publish_date'
 };
 
 exports.Prisma.SortOrder = {

@@ -85,6 +85,17 @@ const getBlogbyIdHandler = async (c: Context) => {
       where: {
         id: postId,
       },
+      select: {
+        id:true,
+        title: true,
+        content: true,
+        publish_date: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
     if (!post) {
       return c.json({ error: "Cannot find the post" }, 400);
@@ -101,7 +112,21 @@ const getBlogbyIdHandler = async (c: Context) => {
 const getAllBlogPosts = async (c: Context) => {
   try {
     const client = getPrisma(c);
-    const data = await client.post.findMany({});
+    const data = await client.post.findMany({
+      select: {
+        id:true,
+        title: true,
+        content: true,
+        publish_date: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    console.log(data);
 
     // Optional: If you want to return a different status for empty array
     if (!data || data.length === 0) {
